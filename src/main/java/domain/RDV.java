@@ -1,12 +1,18 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 @Entity
-public class RDV {
+@XmlRootElement(name = "RDV")
+public class RDV implements Serializable {
 
     private Long id;
 
@@ -36,6 +42,7 @@ public class RDV {
 
     @Id
     @GeneratedValue
+    @XmlElement(name = "id")
     public Long getId() {
         return id;
     }
@@ -44,6 +51,7 @@ public class RDV {
         this.id = id;
     }
 
+    @XmlElement(name = "date")
     public Timestamp getDate() {
         return date;
     }
@@ -53,6 +61,8 @@ public class RDV {
     }
 
     @ManyToOne
+    @XmlElement(name = "organisateur")
+    @JsonBackReference
     public Organisateur getOrganisateur() {
         return organisateur;
     }
@@ -61,6 +71,7 @@ public class RDV {
         this.organisateur = organisateur;
     }
 
+    @XmlElement(name = "libelle")
     public String getLibelle() {
         return libelle;
     }
@@ -70,6 +81,9 @@ public class RDV {
     }
 
     @ManyToMany
+    @XmlElementWrapper(name = "pros")
+    @XmlElement(name = "pro")
+    @JsonBackReference
     public List<Professionnel> getProfs() {
         return profs;
     }

@@ -1,13 +1,19 @@
 package domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Inheritance
-public class Professionnel {
+@XmlRootElement(name = "Professionnel")
+public class Professionnel implements Serializable {
     private Long id;
 
     private String name;
@@ -28,6 +34,7 @@ public class Professionnel {
 
     @Id
     @GeneratedValue
+    @XmlElement(name = "id")
     public Long getId() {
         return id;
     }
@@ -36,6 +43,7 @@ public class Professionnel {
         this.id = id;
     }
 
+    @XmlElement(name = "name")
     public String getName() {
         return name;
     }
@@ -45,6 +53,9 @@ public class Professionnel {
     }
 
     @ManyToMany(mappedBy = "profs", cascade = CascadeType.PERSIST)
+    @XmlElementWrapper(name = "rdvs")
+    @XmlElement(name = "rdv")
+    @JsonManagedReference
     public List<RDV> getRDV() {
         return rdv;
     }
