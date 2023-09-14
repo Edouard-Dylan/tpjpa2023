@@ -25,6 +25,7 @@ import jakarta.ws.rs.core.Application;
 import rest.OrganisateurResource;
 import rest.ProfessionnelResource;
 import rest.RDVResource;
+import rest.SwaggerResource;
 
 @ApplicationPath("/")
 public class TestApplication extends Application {
@@ -36,6 +37,7 @@ public class TestApplication extends Application {
         final Set<Class<?>> clazzes = new HashSet<Class<?>>();
 
         clazzes.add(OpenApiResource.class);
+        clazzes.add(SwaggerResource.class);
         clazzes.add(ProfessionnelResource.class);
         clazzes.add(OrganisateurResource.class);
         clazzes.add(RDVResource.class);

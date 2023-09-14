@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 @Path("rdv")
-@Produces({"application/json", "application/xml"})
+@Produces({"application/json"})
 public class RDVResource {
 
     private RDVDao rdvDao = new RDVDao();

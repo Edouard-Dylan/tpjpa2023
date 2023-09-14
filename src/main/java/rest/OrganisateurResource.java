@@ -15,7 +15,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 @Path("orga")
-@Produces({"application/json", "application/xml"})
+@Produces({"application/json"})
 public class OrganisateurResource {
 
     private OrganisateurDao orgaDao = new OrganisateurDao();

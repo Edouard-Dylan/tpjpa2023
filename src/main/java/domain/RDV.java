@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -63,6 +64,7 @@ public class RDV implements Serializable {
     @ManyToOne
     @XmlElement(name = "organisateur")
     @JsonBackReference
+    @XmlTransient
     public Organisateur getOrganisateur() {
         return organisateur;
     }
@@ -84,6 +86,7 @@ public class RDV implements Serializable {
     @XmlElementWrapper(name = "pros")
     @XmlElement(name = "pro")
     @JsonBackReference
+    @XmlTransient
     public List<Professionnel> getProfs() {
         return profs;
     }

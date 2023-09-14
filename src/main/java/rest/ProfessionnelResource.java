@@ -14,7 +14,7 @@ import jakarta.ws.rs.core.Response;
 import java.util.List;
 
 @Path("pro")
-@Produces({"application/json", "application/xml"})
+@Produces({"application/json"})
 public class ProfessionnelResource {
 
     private ProfessionnelDao proDao = new ProfessionnelDao();
