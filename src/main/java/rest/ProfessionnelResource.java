@@ -35,6 +35,7 @@ public class ProfessionnelResource {
 
     @POST
     @Consumes("application/json")
+    @Path("/create")
     public Response addPro(
             @Parameter(description = "Professionnel object that needs to be added to the application", required = true) Professionnel pro) {
         // add professionnel
@@ -48,6 +49,7 @@ public class ProfessionnelResource {
 
     @POST
     @Consumes("application/json")
+    @Path("/delete")
     public Response deletePro(
             @Parameter(description = "Professionnel object that needs to be added to the application", required = true) Professionnel pro) {
         // add professionnel

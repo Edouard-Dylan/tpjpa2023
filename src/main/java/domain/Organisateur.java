@@ -32,7 +32,7 @@ public class Organisateur extends Professionnel implements Serializable {
     @OneToMany(mappedBy = "organisateur", cascade = CascadeType.PERSIST)
     @XmlElementWrapper(name = "rdvsOrganise")
     @XmlElement(name = "rdv")
-    @JsonManagedReference
+    //@JsonManagedReference(value = "organisateur-rdv")
     public List<RDV> getRdvOrganise() {
         return rdvOrganise;
     }

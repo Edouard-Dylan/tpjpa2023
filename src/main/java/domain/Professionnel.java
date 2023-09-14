@@ -56,7 +56,7 @@ public class Professionnel implements Serializable {
     @ManyToMany(mappedBy = "profs", cascade = CascadeType.PERSIST)
     @XmlElementWrapper(name = "rdvs")
     @XmlElement(name = "rdv")
-    @JsonManagedReference
+    //@JsonManagedReference(value = "professionnels-rdv")
     public List<RDV> getRDV() {
         return rdv;
     }

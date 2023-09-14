@@ -1,6 +1,7 @@
 package domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlElementWrapper;
@@ -63,7 +64,8 @@ public class RDV implements Serializable {
 
     @ManyToOne
     @XmlElement(name = "organisateur")
-    @JsonBackReference
+    //@JsonBackReference(value = "organisateur-rdv")
+    @JsonIgnore
     @XmlTransient
     public Organisateur getOrganisateur() {
         return organisateur;
@@ -85,7 +87,8 @@ public class RDV implements Serializable {
     @ManyToMany
     @XmlElementWrapper(name = "pros")
     @XmlElement(name = "pro")
-    @JsonBackReference
+    @JsonBackReference(value = "professionnels-rdv")
+    @JsonIgnore
     @XmlTransient
     public List<Professionnel> getProfs() {
         return profs;

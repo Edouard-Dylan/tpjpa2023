@@ -35,6 +35,7 @@ public class RDVResource {
 
     @POST
     @Consumes("application/json")
+    @Path("/create")
     public Response addRDV(
             @Parameter(description = "RDV object that needs to be added to the application", required = true) RDV rdv) {
         // add RDV
@@ -48,6 +49,7 @@ public class RDVResource {
 
     @POST
     @Consumes("application/json")
+    @Path("/delete")
     public Response deleteRDV(
             @Parameter(description = "RDV object that needs to be added to the application", required = true) RDV rdv) {
         // add RDV

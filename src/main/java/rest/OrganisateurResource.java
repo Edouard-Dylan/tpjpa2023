@@ -36,6 +36,7 @@ public class OrganisateurResource {
 
     @POST
     @Consumes("application/json")
+    @Path("/create")
     public Response addOrga(
             @Parameter(description = "Organisateur object that needs to be added to the application", required = true) Organisateur orga) {
         // add Organisateur
@@ -49,6 +50,7 @@ public class OrganisateurResource {
 
     @POST
     @Consumes("application/json")
+    @Path("/delete")
     public Response deleteOrga(
             @Parameter(description = "Organisateur object that needs to be added to the application", required = true) Organisateur orga) {
         // add Organisateur
