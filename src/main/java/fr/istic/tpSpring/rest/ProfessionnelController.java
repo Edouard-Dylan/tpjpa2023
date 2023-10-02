@@ -1,10 +1,10 @@
 package fr.istic.tpSpring.rest;
 
+import fr.istic.tpSpring.dto.ProfessionnelDTO;
+import fr.istic.tpSpring.dto.mapper.MapperGlobal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import fr.istic.tpSpring.dao.ProfessionnelDao;
 import fr.istic.tpSpring.domain.Professionnel;
@@ -12,24 +12,30 @@ import fr.istic.tpSpring.domain.Professionnel;
 import java.util.List;
 
 @Controller
+@RequestMapping("/pro")
 public class ProfessionnelController {
 
-    @RequestMapping("/{proId}")
+    @GetMapping("/{proId}")
     @ResponseBody
-    public Professionnel getProById(@PathVariable("proId") Long proId)  {
-        return (Professionnel) professionnelDao.getReferenceById(proId);
+    public ProfessionnelDTO getProById(@PathVariable("proId") Long proId)  {
+        Professionnel pro = professionnelDao.getReferenceById(proId);
+        ProfessionnelDTO proDTO = MapperGlobal.INSTANCE.professionnelToProfessionnelDTO(pro);
+        return proDTO;
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     @ResponseBody
-    public List<Professionnel> getPros()  {
-        return (List<Professionnel>) professionnelDao.findAll();
+    public List<ProfessionnelDTO> getPros()  {
+        List<Professionnel> pros = professionnelDao.findAll();
+        List<ProfessionnelDTO> prosDTO = MapperGlobal.INSTANCE.professionnelToProfessionnelDTO(pros);
+        return prosDTO;
     }
 
-    @RequestMapping("/create")
+    @PostMapping("/create")
     @ResponseBody
-    public String addPro(Professionnel pro) {
+    public String addPro(@RequestBody Professionnel pro) {
         // add professionnel
+        System.out.println(pro);
         try{
             professionnelDao.save(pro);
         }catch (Exception e){
@@ -38,9 +44,9 @@ public class ProfessionnelController {
         return "Professionnel créer avec succès.";
     }
 
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     @ResponseBody
-    public String deletePro(Professionnel pro) {
+    public String deletePro(@RequestBody Professionnel pro) {
         // add professionnel
         try{
             professionnelDao.delete(pro);

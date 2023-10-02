@@ -1,10 +1,10 @@
 package fr.istic.tpSpring.rest;
 
+import fr.istic.tpSpring.dto.OrganisateurDTO;
+import fr.istic.tpSpring.dto.mapper.MapperGlobal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import fr.istic.tpSpring.dao.OrganisateurDao;
 import fr.istic.tpSpring.domain.Organisateur;
@@ -12,22 +12,27 @@ import fr.istic.tpSpring.domain.Organisateur;
 import java.util.List;
 
 @Controller
+@RequestMapping("/orga")
 public class OrganisateurController {
 
-    @RequestMapping("/{orgaId}")
+    @GetMapping("/{orgaId}")
     @ResponseBody
-    public Organisateur getOrgaById(@PathVariable("orgaId") Long orgaId)  {
-        return (Organisateur) organisateurDao.getReferenceById(orgaId);
+    public OrganisateurDTO getOrgaById(@PathVariable("orgaId") Long orgaId)  {
+        Organisateur orga = organisateurDao.getReferenceById(orgaId);
+        OrganisateurDTO orgaDTO = MapperGlobal.INSTANCE.OrganisateurToOrganisateurDTO(orga);
+        return orgaDTO;
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     @ResponseBody
-    public List<Organisateur> getOrgas()  {
-        return (List<Organisateur>) organisateurDao.findAll();
+    public List<OrganisateurDTO> getOrgas()  {
+        List<Organisateur> organisateurs = organisateurDao.findAll();
+        List<OrganisateurDTO> organisateursDTO = MapperGlobal.INSTANCE.OrganisateurToOrganisateurDTO(organisateurs);
+        return organisateursDTO;
     }
 
 
-    @RequestMapping("/create")
+    @PostMapping("/create")
     @ResponseBody
     public String addOrga(Organisateur orga) {
         // add Organisateur
@@ -39,7 +44,7 @@ public class OrganisateurController {
         return "Organisateur créer avec succès.";
     }
 
-    @RequestMapping("/delete")
+    @PostMapping("/delete")
     @ResponseBody
     public String deleteOrga(Organisateur orga) {
         // add Organisateur
