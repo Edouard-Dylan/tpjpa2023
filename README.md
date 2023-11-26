@@ -1,5 +1,7 @@
 # Template de projet pour le TP JPA 2021 UniR
 
+voir README de la branche spring
+
 ## Modèle métier du projet
 ```mermaid
 classDiagram
