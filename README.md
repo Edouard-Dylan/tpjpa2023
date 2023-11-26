@@ -37,7 +37,7 @@ Voici un petit apperçu de le structuration du code de ce projet:
 - [DTO](#dto) : src/main/java/fr/istic/tpSpring/dto
 - [mapstruct](#mapstruct) : src/main/java/fr/istic/tpSpring/dto/mapper
 - [API Rest](#api-rest) : src/main/java/fr/istic/tpSpring/rest
-- [OpenAPI] : pom.xml
+- [OpenAPI](#openapi) : pom.xml
 - [AOP](#aop) : src/main/java/fr/istic/tpSpring/aspect
 - [SpringBoot](#springboot) : pom.xml
 - [KeyCloak](#keycloak) :
@@ -58,16 +58,16 @@ OpenAPI est présent. Un swagger est aussi déployé. Tout s'est fait (presque) 
 
 ```xml
 <dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.7.0</version>
-		</dependency>
+	<groupId>io.springfox</groupId>
+	<artifactId>springfox-swagger-ui</artifactId>
+	<version>2.7.0</version>
+</dependency>
 
-		<dependency>
-			<groupId>org.springdoc</groupId>
-			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-			<version>2.2.0</version>
-		</dependency>
+<dependency>
+	<groupId>org.springdoc</groupId>
+	<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+	<version>2.2.0</version>
+</dependency>
 ```
 
 ## AOP
